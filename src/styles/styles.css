@@ -1,0 +1,86 @@
+.title {
+    padding-top: 70px;
+}
+
+.city-search {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 250px;
+    border: '10px solid lightgray',
+}
+
+.weather-output {
+    padding: 5px;
+    margin-top: 40px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 250px;
+    border: '10px solid lightgray',
+}
+
+.small-icon {
+    width: 120px; 
+    height: 120px; 
+}
+
+.big-icon {
+    width: 150px; 
+    height: 150px; 
+}
+
+.weather_container {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    font-size: calc(5px + 2vmin);
+    border: 7px solid black; 
+    border-radius: 10px;
+    color: rgb(11, 30, 230);
+    margin: 25px auto 0 auto;
+}
+
+.single_day_forcast_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    font-size: calc(5px + 2vmin);
+    border: 7px solid black; 
+    border-radius: 10px;
+    color: rgb(11, 30, 230);
+    margin: 25px auto 0 auto;
+}
+
+
+.weather_container h2,
+.weather_container h3,
+.weather_container .weather-icon {
+    margin: 3px 0; 
+}
+
+.min_max_temp{
+    font-size: calc(5px + 2vmin);
+    color: rgb(11, 30, 230);
+    line-height: 1.2; 
+    font-family: Arial, sans-serif;
+    font-weight: bold; 
+}
+
+.five_days_icon{
+    margin: -25px;
+}
+
+.forcast_date{
+    font-size: calc(5px + 2vmin);
+    color: rgb(11, 30, 230);
+    line-height: 1.2; 
+    font-family: Arial, sans-serif;
+    font-weight: bold; 
+}
+
+
