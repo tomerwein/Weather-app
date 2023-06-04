@@ -13,7 +13,7 @@ const Forcast = ({shouldUseDefaultWeatherLocation, setShouldUseDefaultWeatherLoc
   const [hasWatchFavoritesPressed, setHasWatchFavoritesPressed] = useState(false);
   const [addingToFavoriteMessage, setAddingToFavoriteMessage] = useState(false);
 
-  const [inputUpdated, setInputUpdated] = useState('');
+  const [inputUpdated, setInputUpdated] = useState('tel aviv');
   
   
   const [country, setCountry] = useState('');
@@ -35,12 +35,9 @@ const Forcast = ({shouldUseDefaultWeatherLocation, setShouldUseDefaultWeatherLoc
 
   const iconSize = "big-icon";
 
-  // useEffect(() => {
-  //   if (shouldUseDefaultWeatherLocation){
-  //     handleChangeToDefaultWeatherLocation();
-  //   }
-    
-  // }, [shouldUseDefaultWeatherLocation]);
+  useEffect(() => {
+      handleChangeToDefaultWeatherLocation();
+  }, []);
   
   const isEnglish = (text) => {
     return /^[A-Za-z ]*$/.test(text);
@@ -56,10 +53,7 @@ const Forcast = ({shouldUseDefaultWeatherLocation, setShouldUseDefaultWeatherLoc
   }
 
   const handleChangeToDefaultWeatherLocation = () => {
-    setInputUpdated("bnei brak");
-    if (shouldUseDefaultWeatherLocation) { 
-      setShouldUseDefaultWeatherLocation(false);
-    };
+    setInputUpdated("tel aviv");
     handleSubmit();
   }
 

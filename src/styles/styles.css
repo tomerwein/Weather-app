@@ -118,7 +118,7 @@
     gap: 20px;
 }
 
-.add-to-favorites-button {
+.favorites-button {
     position: relative;
     background-color: #4CAF50; /* Green background */
     border: none; 
@@ -134,8 +134,12 @@
     transition-duration: 0.6s; 
 }
 
-.add-to-favorites-button:hover {
-    background-color: #45a049; /* Green background on hover */
+.favorites-button:hover {
+    background-color: #45a049;
+}
+
+.favorites-button:active {
+    background-color: #2e276d; 
 }
 
 .favorite-container {

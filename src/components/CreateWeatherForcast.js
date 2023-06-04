@@ -77,19 +77,19 @@ const CreateWeatherForcast = (
 
           <div className='buttons-container'>
             <button 
-              className='add-to-favorites-button'
+              className='favorites-button'
               onClick={() => addToFavorites(city)}>
               Add to Favorites
             </button>
 
             <button 
-              className='add-to-favorites-button'
+              className='favorites-button'
               onClick={() => deleteFromFavorites(city)}>
               Delete from Favorites
             </button>
 
             <button 
-              className='add-to-favorites-button'
+              className='favorites-button'
               onClick={() => setHasWatchFavoritesPressed(true)}>
               Watch Favorites
             </button>

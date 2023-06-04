@@ -22,7 +22,7 @@ const FavoriteCities = ({favorites}) => {
             )}
 
             <button 
-                className='add-to-favorites-button'
+                className='favorites-button'
                 onClick={() => setBackToSearch(true)}>
                 Back to search
             </button>            
