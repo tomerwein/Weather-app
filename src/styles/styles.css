@@ -92,3 +92,11 @@
     color: rgb(11, 30, 230);
     margin: 0px auto 0 auto;
 }
+
+.search_city_container{
+    position: relative;
+    padding-left: 142px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}

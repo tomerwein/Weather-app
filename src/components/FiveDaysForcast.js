@@ -2,9 +2,7 @@ import React from 'react';
 import SingleDay from './SingleDay';
 
 
-const FiveDaysForecast = ({ fifeDaysForcast }) => {
-    const day1 = fifeDaysForcast[0];
-    
+const FiveDaysForecast = ({ fifeDaysForcast }) => {    
     return (
         <div className='five_days_forcast_container'>            
             <SingleDay dayParameters={fifeDaysForcast[0]} daysAdditionToCurrentDay={0}/> 

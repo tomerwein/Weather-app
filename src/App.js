@@ -8,6 +8,11 @@ import FiveDaysForecast from './components/FiveDaysForcast';
 
 
 function App() {
+  const [favoriteButtonPressed, setFavoriteButtonPressed] = useState(false);
+
+  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
+
+
   const [inputUpdated, setInputUpdated] = useState('');
   
   const [country, setCountry] = useState('');
@@ -23,6 +28,12 @@ function App() {
   const [fifeDaysForcast, setFifeDaysForcast] = useState([]);
 
   const iconSize = "big-icon";
+
+  const addToFavorites = (day) => {
+    const newFavorites = [...favorites, day];
+    setFavorites(newFavorites);
+    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+};
 
   const handleChangeInInput = (e) => {
     setInputUpdated(e.target.value);
@@ -77,14 +88,19 @@ function App() {
     <div className="App">
       <h1 className='title'>Tomer's Weather App</h1>    
       
-      <form onSubmit={handleSubmit}>
-        <input 
-          className='city-search'
-          type='text' 
-          placeholder='Search for city' 
-          onChange={handleChangeInInput}
-        />
-      </form>
+      <div className='search_city_container'>
+        <form onSubmit={handleSubmit}>
+          <input 
+            className='city-search'
+            type='text' 
+            placeholder='Search for city' 
+            onChange={handleChangeInInput}
+          />
+        </form>
+
+        <button onClick={() => addToFavorites(city)}>Add to Favorites</button>
+
+      </div>
 
       <div className='weather_container'>
           
