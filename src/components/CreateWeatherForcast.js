@@ -83,7 +83,7 @@ const CreateWeatherForcast = (
             </button>
 
             <button 
-              className='favorites-button'
+              className='delete-favorites-button'
               onClick={() => deleteFromFavorites(city)}>
               Delete from Favorites
             </button>

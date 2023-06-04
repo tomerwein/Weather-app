@@ -12,9 +12,6 @@ import CreateWeatherForcast from './components/CreateWeatherForcast';
 const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   const [hasWatchFavoritesPressed, setHasWatchFavoritesPressed] = useState(false);
   const [addingToFavoriteMessage, setAddingToFavoriteMessage] = useState(false);
-
-  
-  
   
   const [country, setCountry] = useState('');
   const [city, setCity] = useState('');
@@ -59,7 +56,7 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
 
   const getFiveDaysForecast = async (data) => {
     axios.get
-    (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=9mJAAmzlyJwDPxBVEbOBr2zKPaPq9HFP`)
+    (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=B23jFZIqsDsBHRoeGJH6G8GgvYahGRgV`)
     .then((res) => {
       setFiveDaysForcast(res.data.DailyForecasts);
     })
@@ -70,7 +67,7 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
     setCountry(data.Country.EnglishName);
     setCity(data.EnglishName);
     axios.get
-    (`http://dataservice.accuweather.com/currentconditions/v1/${data.Key}?apikey=9mJAAmzlyJwDPxBVEbOBr2zKPaPq9HFP`)
+    (`http://dataservice.accuweather.com/currentconditions/v1/${data.Key}?apikey=B23jFZIqsDsBHRoeGJH6G8GgvYahGRgV`)
     .then((res) => {
     
       console.log(res.data[0]);
@@ -93,7 +90,7 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   const handleSubmit = (e) => {
     if (e) e.preventDefault(); 
     axios.get
-     (`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=9mJAAmzlyJwDPxBVEbOBr2zKPaPq9HFP&q=${inputUpdated}`)
+     (`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=B23jFZIqsDsBHRoeGJH6G8GgvYahGRgV&q=${inputUpdated}`)
      .then((res) => {
       if (res.data.length === 0) {
         alert('Please enter a valid city name');

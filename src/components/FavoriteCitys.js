@@ -7,15 +7,27 @@ const FavoriteCities = ({favorites}) => {
 
 
     console.log(favorites);
+    const [inputUpdated, setInputUpdated] = useState('tel aviv');
+
 
     return (
-        backToSearch ? <Forcast/>: 
+        backToSearch ? <Forcast
+        inputUpdated={inputUpdated}
+        setInputUpdated={setInputUpdated}
+        />: 
         <div className='background'>
         <div className='favorite-container'>
             <h2>Favorite Cities</h2>
 
             {favorites.length > 0 ? favorites.map((city, index) => (
-                <span key={index}> {city} </span> )
+                <button 
+                    key={index}
+                    onClick={() => {setInputUpdated(city)} }
+                    > {city}
+                    
+                </button> 
+                
+                )
                 
             ) : (
                 <p>No favorite cities yet.</p>

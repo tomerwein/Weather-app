@@ -135,11 +135,27 @@
     transition-duration: 0.6s; 
 }
 
-.favorites-button:hover {
+.delete-favorites-button {
+    position: relative;
+    background-color: #4CAF50; 
+    border: none; 
+    color: white; 
+    padding: 15px 15.5px; 
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 0px;
+    cursor: pointer; 
+    border-radius: 12px; 
+    transition-duration: 0.6s; 
+}
+
+.favorites-button:hover, .delete-favorites-button:hover {
     background-color: #45a049;
 }
 
-.favorites-button:active {
+.favorites-button:active, .delete-favorites-button:active {
     background-color: #2e276d; 
 }
 
