@@ -9,11 +9,11 @@ import FavoriteCities from './components/FavoriteCitys';
 import CreateWeatherForcast from './components/CreateWeatherForcast';
 
 
-const Forcast = ({shouldUseDefaultWeatherLocation, setShouldUseDefaultWeatherLocation}) =>  {
+const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   const [hasWatchFavoritesPressed, setHasWatchFavoritesPressed] = useState(false);
   const [addingToFavoriteMessage, setAddingToFavoriteMessage] = useState(false);
 
-  const [inputUpdated, setInputUpdated] = useState('tel aviv');
+  
   
   
   const [country, setCountry] = useState('');

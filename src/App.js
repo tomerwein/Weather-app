@@ -7,12 +7,12 @@ import Forcast from './Forcast';
 
 
 function App() {
-  const [shouldUseDefaultWeatherLocation, setShouldUseDefaultWeatherLocation] = useState(true);
+  const [inputUpdated, setInputUpdated] = useState('tel aviv');
 
   return (
       <Forcast 
-      shouldUseDefaultWeatherLocation={shouldUseDefaultWeatherLocation}
-      setShouldUseDefaultWeatherLocation={setShouldUseDefaultWeatherLocation}/>
+      inputUpdated={inputUpdated}
+      setInputUpdated={setInputUpdated}/>
   );
 };
 
