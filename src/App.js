@@ -16,7 +16,10 @@ function App() {
   const [hasPrecipitation, setHasPrecipitation] = useState(false);
   const [weatherType, setWeatherType] = useState('');
   const [weatherIcon, setWeatherIcon] = useState(0);
-  const [IsDayTime, setIsDayTime] = useState(true);
+  const [forcastDate, setForcastDate] = useState('');
+  const [forcastDayOftheWeek, setForcastDayOftheWeek] = useState('');
+
+  const [forcastLastTimeUpdated, setForcastLastTimeUpdated] = useState('');
   const [fifeDaysForcast, setFifeDaysForcast] = useState([]);
 
   const iconSize = "big-icon";
@@ -27,10 +30,9 @@ function App() {
 
   const getFifeDaysForecast = async (data) => {
     axios.get
-    (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=tIxyBRM1zTcG281Ca77Su32ooLntrCjB`)
+    (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=djJLKsXGe9zUAirK2eDA3ivGhy1p4Mc3`)
     .then((res) => {
       setFifeDaysForcast(res.data.DailyForecasts);
-      console.log(res.data.DailyForecasts);
     })
   }
 
@@ -39,26 +41,34 @@ function App() {
     setCountry(data.Country.EnglishName);
     setCity(data.EnglishName);
     axios.get
-    (`http://dataservice.accuweather.com/currentconditions/v1/${data.Key}?apikey=tIxyBRM1zTcG281Ca77Su32ooLntrCjB`)
+    (`http://dataservice.accuweather.com/currentconditions/v1/${data.Key}?apikey=djJLKsXGe9zUAirK2eDA3ivGhy1p4Mc3`)
     .then((res) => {
-     
+    
+      console.log(res.data[0]);
+
      setCurrentWeatherInC(res.data[0].Temperature.Metric.Value);
+     setForcastDate(res.data[0].LocalObservationDateTime.substring(5, 10));
+     setForcastLastTimeUpdated(res.data[0].LocalObservationDateTime.substring(11, 16));
      setHasPrecipitation(res.data[0].HasPrecipitation);
      setWeatherType(res.data[0].WeatherText);
      setWeatherIcon(res.data[0].WeatherIcon);
-     setIsDayTime(res.data[0].IsDayTime);
+     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+     const date = new Date();
+    const dayOfTheWeek = daysOfWeek[date.getDay()];
+    console.log(dayOfTheWeek);
+     setForcastDayOftheWeek(dayOfTheWeek);
    })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
     axios.get
-     (`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=tIxyBRM1zTcG281Ca77Su32ooLntrCjB&q=${inputUpdated}`)
+     (`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=djJLKsXGe9zUAirK2eDA3ivGhy1p4Mc3&q=${inputUpdated}`)
      .then((res) => {
       updateAllWeatherData(res.data[0]);
       getFifeDaysForecast(res.data[0]);
 
-      console.log(res.data[0]);
     })
   }
 
@@ -82,11 +92,19 @@ function App() {
             {city+','}  {country}
           </h3>
 
+          <h3 className="date-day-of-the-week">
+            {forcastDayOftheWeek + ', ' + forcastDate}  
+          </h3>
+
+          <h3 className="time">
+            {forcastLastTimeUpdated}
+          </h3>
+
+          <WeatherIcon weatherIcon={weatherIcon} iconSize={iconSize}/>
+
           <h2 className='temperature'>
             {currentWeatherInC + '°C'}
           </h2>
-
-          <WeatherIcon weatherIcon={weatherIcon} iconSize={iconSize}/>
           
           <h3 className='weather-type'>
             {'Status: ' + weatherType}

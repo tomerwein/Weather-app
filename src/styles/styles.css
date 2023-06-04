@@ -37,7 +37,7 @@
     justify-content: center;
     width: 250px;
     font-size: calc(5px + 2vmin);
-    border: 7px solid black; 
+    border: 5px solid black; 
     border-radius: 10px;
     color: rgb(11, 30, 230);
     margin: 25px auto 0 auto;
@@ -50,7 +50,7 @@
     justify-content: center;
     width: 100px;
     font-size: calc(5px + 2vmin);
-    border: 7px solid black; 
+    border: 5px solid black; 
     border-radius: 10px;
     color: rgb(11, 30, 230);
     margin: 25px auto 0 auto;
@@ -83,4 +83,12 @@
     font-weight: bold; 
 }
 
-
+.five_days_forcast_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 850px;
+    font-size: calc(5px + 2vmin);
+    color: rgb(11, 30, 230);
+    margin: 0px auto 0 auto;
+}
