@@ -1,5 +1,15 @@
+.background {
+    text-align: center;
+    background-image: url('./../images/background/bright_day.jpg');
+    background-size: cover;
+    background-position: center;
+    
+    min-height: 100vh;
+    position: relative;
+}
+
 .title {
-    padding-top: 70px;
+    padding-top: 50px;
 }
 
 .city-search {
@@ -40,7 +50,7 @@
     border: 5px solid black; 
     border-radius: 10px;
     color: rgb(11, 30, 230);
-    margin: 25px auto 0 auto;
+    margin: 25px 0 0 0;
 }
 
 .single_day_forcast_container{
@@ -95,13 +105,21 @@
 
 .search_city_container{
     position: relative;
-    padding-left: 195px;
+    /* padding-left: 195px; */
     display: flex;
     justify-content: center;
     gap: 30px;
 }
 
+.full-container {
+    position: relative;
+    padding-left: 582px;
+    display: flex;
+    gap: 20px;
+}
+
 .add-to-favorites-button {
+    position: relative;
     background-color: #4CAF50; /* Green background */
     border: none; 
     color: white; 
@@ -110,7 +128,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    margin: -3px 0px;
+    margin: 10px 0px;
     cursor: pointer; 
     border-radius: 12px; 
     transition-duration: 0.6s; 
@@ -119,3 +137,25 @@
 .add-to-favorites-button:hover {
     background-color: #45a049; /* Green background on hover */
 }
+
+.favorite-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    font-size: calc(5px + 2vmin);
+    border: 5px solid black; 
+    border-radius: 10px;
+    color: rgb(11, 30, 230);
+    margin: 0px auto 0 auto;
+}
+
+.buttons-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
