@@ -9,11 +9,12 @@
 }
 
 .title {
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 .city-search {
     padding: 10px;
+    margin-bottom: 12px;
     font-size: 16px;
     border-radius: 5px;
     width: 250px;
@@ -69,9 +70,10 @@
 
 .weather_container h2,
 .weather_container h3,
-.weather_container .weather-icon {
-    margin: 3px 0; 
+.weather_container {
+    margin: 0px 0; 
 }
+
 
 .min_max_temp{
     font-size: calc(5px + 2vmin);
@@ -105,7 +107,6 @@
 
 .search_city_container{
     position: relative;
-    /* padding-left: 195px; */
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -120,7 +121,7 @@
 
 .favorites-button {
     position: relative;
-    background-color: #4CAF50; /* Green background */
+    background-color: #4CAF50; 
     border: none; 
     color: white; 
     padding: 15px 32px; 
