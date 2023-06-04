@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-// import Search from './components/search_city';
+
 import './styles/styles.css';
 import axios from 'axios';
 import WeatherIcon from './components/WeatherIcon';
@@ -11,6 +11,8 @@ function App() {
   const [favoriteButtonPressed, setFavoriteButtonPressed] = useState(false);
 
   const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
+  const [addingToFavoriteMessage, setAddingToFavoriteMessage] = useState('');
+
 
 
   const [inputUpdated, setInputUpdated] = useState('');
@@ -28,12 +30,24 @@ function App() {
   const [fifeDaysForcast, setFifeDaysForcast] = useState([]);
 
   const iconSize = "big-icon";
+  
+    const addToFavorites = (city) => {
+      if (!favorites.some(favoriteCity => favoriteCity === city)) {
+        const newFavorites = [...favorites, city];
+        setFavorites(newFavorites);
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        setAddingToFavoriteMessage('Added to favorites!');
+        console.log(city);
+        console.log(favorites);
+        
+      }
+      else{
+        setAddingToFavoriteMessage('Already exist in memory!');
+        console.log("can't add to favorites");
+        console.log(favorites);
 
-  const addToFavorites = (day) => {
-    const newFavorites = [...favorites, day];
-    setFavorites(newFavorites);
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
-};
+      }
+    }  
 
   const handleChangeInInput = (e) => {
     setInputUpdated(e.target.value);
@@ -83,7 +97,6 @@ function App() {
     })
   }
 
-
   return (
     <div className="App">
       <h1 className='title'>Tomer's Weather App</h1>    
@@ -98,7 +111,11 @@ function App() {
           />
         </form>
 
-        <button onClick={() => addToFavorites(city)}>Add to Favorites</button>
+        <button 
+          className='add-to-favorites-button'
+          onClick={() => addToFavorites(city)}>
+          Add to Favorites
+        </button>
 
       </div>
 
