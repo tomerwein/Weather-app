@@ -8,6 +8,27 @@ const CreateWeatherForcast = (
     weatherType, favorites, setFavorites,
     setAddingToFavoriteMessage, setHasWatchFavoritesPressed,
     fiveDaysForcast}) =>  {
+        
+        const deleteFromFavorites = (city) => {
+            // Check if the city is in the favorites list
+            if (favorites.some(favoriteCity => favoriteCity === city)) {
+                // Remove the city from the favorites list
+                const newFavorites = favorites.filter(favoriteCity => favoriteCity !== city);
+                
+                // Update the state and localStorage
+                setFavorites(newFavorites);
+                localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        
+                // Optional: Display a message or alert
+                setAddingToFavoriteMessage('Removed from favorites!');
+                alert('Removed from favorites!');
+            }
+            else{
+                // Optional: Display a message or alert if the city is not in the favorites list
+                setAddingToFavoriteMessage('City is not in favorites!');
+                alert('City is not in favorites!');
+            }
+        }
 
         const addToFavorites = (city) => {
             if (!favorites.some(favoriteCity => favoriteCity === city)) {
@@ -15,28 +36,27 @@ const CreateWeatherForcast = (
               setFavorites(newFavorites);
               localStorage.setItem('favorites', JSON.stringify(newFavorites));
               setAddingToFavoriteMessage('Added to favorites!');
-              console.log(city);
-              console.log(favorites);
+              alert('Added to favorites!');
+              return;
               
             }
             else{
               setAddingToFavoriteMessage('Already exist in memory!');
-              console.log("can't add to favorites");
-              console.log(favorites);
-      
+                alert('Already exist in memory!');
+                return;   
             }
           }  
 
         return (  
         <div className='main-container'>
-        <div className='full-container'>
+        {city && (<div className='full-container'>
         <div className='weather_container'>  
             <h3 className="city-country">
-              {city+','}  {country}
+              {city + ','} {country}
             </h3>
 
             <h3 className="date-day-of-the-week">
-              {forcastDayOftheWeek + ', ' + forcastDate}  
+                {forcastDayOftheWeek + ', ' + forcastDate}  
             </h3>
 
             <h3 className="time">
@@ -52,7 +72,7 @@ const CreateWeatherForcast = (
             <h3 className='weather-type'>
               {'Status: ' + weatherType}
             </h3>
-
+        
         </div>
 
           <div className='buttons-container'>
@@ -64,11 +84,17 @@ const CreateWeatherForcast = (
 
             <button 
               className='add-to-favorites-button'
+              onClick={() => deleteFromFavorites(city)}>
+              Delete from Favorites
+            </button>
+
+            <button 
+              className='add-to-favorites-button'
               onClick={() => setHasWatchFavoritesPressed(true)}>
               Watch Favorites
             </button>
           </div>
-        </div>
+        </div>)}
       
       <FiveDaysForecast fiveDaysForcast={fiveDaysForcast}/>        
 

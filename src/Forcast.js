@@ -9,16 +9,12 @@ import FavoriteCities from './components/FavoriteCitys';
 import CreateWeatherForcast from './components/CreateWeatherForcast';
 
 
-const Forcast = () =>  {
+const Forcast = ({shouldUseDefaultWeatherLocation, setShouldUseDefaultWeatherLocation}) =>  {
   const [hasWatchFavoritesPressed, setHasWatchFavoritesPressed] = useState(false);
   const [addingToFavoriteMessage, setAddingToFavoriteMessage] = useState(false);
-  
-  const [shouldUseDefaultWeatherLocation, setShouldUseDefaultWeatherLocation] = useState(true);
-
-
-
 
   const [inputUpdated, setInputUpdated] = useState('');
+  
   
   const [country, setCountry] = useState('');
   const [city, setCity] = useState('');
@@ -39,23 +35,35 @@ const Forcast = () =>  {
 
   const iconSize = "big-icon";
 
-  useEffect(() => {
-    handleChangeToDefaultWeatherLocation();
-  }, []);
+  // useEffect(() => {
+  //   if (shouldUseDefaultWeatherLocation){
+  //     handleChangeToDefaultWeatherLocation();
+  //   }
+    
+  // }, [shouldUseDefaultWeatherLocation]);
   
+  const isEnglish = (text) => {
+    return /^[A-Za-z ]*$/.test(text);
+  }
+
   const handleChangeInInput = (e) => {
-    setInputUpdated(e.target.value);
+    if (isEnglish(e.target.value)) {
+      setInputUpdated(e.target.value);
+    }
+    else {
+      alert("Please enter only english letters");
+    }
   }
 
   const handleChangeToDefaultWeatherLocation = () => {
     setInputUpdated("bnei brak");
     if (shouldUseDefaultWeatherLocation) { 
-      setShouldUseDefaultWeatherLocation(false)
+      setShouldUseDefaultWeatherLocation(false);
     };
     handleSubmit();
   }
 
-  const getFifeDaysForecast = async (data) => {
+  const getFiveDaysForecast = async (data) => {
     axios.get
     (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=9mJAAmzlyJwDPxBVEbOBr2zKPaPq9HFP`)
     .then((res) => {
@@ -93,15 +101,19 @@ const Forcast = () =>  {
     axios.get
      (`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=9mJAAmzlyJwDPxBVEbOBr2zKPaPq9HFP&q=${inputUpdated}`)
      .then((res) => {
-      updateAllWeatherData(res.data[0]);
-      getFifeDaysForecast(res.data[0]);
+      if (res.data.length === 0) {
+        alert('Please enter a valid city name');
+        return;
+      }
 
-    })
+      updateAllWeatherData(res.data[0]);
+      getFiveDaysForecast(res.data[0]);
+
+    }).catch((err) => {});
   }
 
   return (
-    hasWatchFavoritesPressed ? <FavoriteCities favorites={favorites}/> :
-    shouldUseDefaultWeatherLocation ? 
+    hasWatchFavoritesPressed ? <FavoriteCities favorites={favorites}/> : 
     <div className="App">
       <h1 className='title'>Tomer's Weather App</h1>
       <div className='search_city_container'>
@@ -132,40 +144,7 @@ const Forcast = () =>  {
         setHasWatchFavoritesPressed={setHasWatchFavoritesPressed}
         fiveDaysForcast={fiveDaysForcast} 
       />
-    </div>
-  : <div className="App">
-  <h1 className='title'>Tomer's Weather App</h1>    
-  
-  <div className='search_city_container'>
-    <form onSubmit={handleSubmit}>
-      <input 
-        className='city-search'
-        type='text' 
-        placeholder='Search for city' 
-        onChange={handleChangeInInput}
-      />
-    </form>
-
-  </div>
-
-
-  <CreateWeatherForcast 
-    city={city} 
-    country={country} 
-    forcastDayOftheWeek={forcastDayOftheWeek}
-    forcastDate={forcastDate}
-    forcastLastTimeUpdated={forcastLastTimeUpdated}
-    weatherIcon={weatherIcon}
-    iconSize={iconSize}
-    currentWeatherInC={currentWeatherInC}
-    weatherType={weatherType}
-    favorites={favorites}
-    setFavorites={setFavorites}
-    setAddingToFavoriteMessage={setAddingToFavoriteMessage}
-    setHasWatchFavoritesPressed={setHasWatchFavoritesPressed}
-    fiveDaysForcast={fiveDaysForcast} 
-  />
-</div>
+    </div> 
   ) 
 }
 

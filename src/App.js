@@ -2,17 +2,17 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 import './styles/styles.css';
-import axios from 'axios';
-import WeatherIcon from './components/WeatherIcon';
-import FiveDaysForecast from './components/FiveDaysForcast';
-import FavoriteCities from './components/FavoriteCitys';
 import Forcast from './Forcast';
 
 
 
 function App() {
+  const [shouldUseDefaultWeatherLocation, setShouldUseDefaultWeatherLocation] = useState(true);
+
   return (
-      <Forcast/>
+      <Forcast 
+      shouldUseDefaultWeatherLocation={shouldUseDefaultWeatherLocation}
+      setShouldUseDefaultWeatherLocation={setShouldUseDefaultWeatherLocation}/>
   );
 };
 
