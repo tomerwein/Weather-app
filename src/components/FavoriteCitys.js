@@ -8,7 +8,6 @@ const iconSize = "small-icon";
 
 const FavoriteCities = ({favorites}) => {
 
-    const [favoriteCities, setFavoriteCities] = useState([]);
     const [backToSearch, setBackToSearch] = useState(false);
     const [inputUpdated, setInputUpdated] = useState('tel aviv');
     const [cityWeatherData, setCityWeatherData] = useState({});
