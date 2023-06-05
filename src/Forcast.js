@@ -147,9 +147,6 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
           onInputChange={(value) => value && handleChangeInInput(value)}
           onChange={(selectedOption) => selectedOption && setInputUpdated(selectedOption.value)}
         />
-
-
-
         </form>
 
         <button 
