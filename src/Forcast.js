@@ -8,10 +8,15 @@ import FiveDaysForecast from './components/FiveDaysForcast';
 import FavoriteCities from './components/FavoriteCitys';
 import CreateWeatherForcast from './components/CreateWeatherForcast';
 
+import { getForcastForEachOfTheNextFiveDays, getCityKey, getAllCurrentWeatherData } from './API/AccuWeatherApiCalls';
+
+
 
 const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   const [hasWatchFavoritesPressed, setHasWatchFavoritesPressed] = useState(false);
   const [addingToFavoriteMessage, setAddingToFavoriteMessage] = useState(false);
+  
+  const [currentCityKey, setCurrentCityKey] = useState('');
   
   const [country, setCountry] = useState('');
   const [city, setCity] = useState('');
@@ -55,10 +60,10 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   }
 
   const getFiveDaysForecast = async (data) => {
-    axios.get
-    (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=B23jFZIqsDsBHRoeGJH6G8GgvYahGRgV`)
+    getForcastForEachOfTheNextFiveDays(data)
     .then((res) => {
-      setFiveDaysForcast(res.data.DailyForecasts);
+      console.log(res);
+      setFiveDaysForcast(res);
     })
   }
 
@@ -66,18 +71,15 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   const updateAllWeatherData = async (data) => {
     setCountry(data.Country.EnglishName);
     setCity(data.EnglishName);
-    axios.get
-    (`http://dataservice.accuweather.com/currentconditions/v1/${data.Key}?apikey=B23jFZIqsDsBHRoeGJH6G8GgvYahGRgV`)
-    .then((res) => {
-    
-      console.log(res.data[0]);
-
-     setCurrentWeatherInC(res.data[0].Temperature.Metric.Value);
-     setForcastDate(res.data[0].LocalObservationDateTime.substring(5, 10));
-     setForcastLastTimeUpdated(res.data[0].LocalObservationDateTime.substring(11, 16));
-     setHasPrecipitation(res.data[0].HasPrecipitation);
-     setWeatherType(res.data[0].WeatherText);
-     setWeatherIcon(res.data[0].WeatherIcon);
+    console.log(data.EnglishName);
+    getAllCurrentWeatherData(data)
+    .then((currentWeatherData) => {
+     setCurrentWeatherInC(currentWeatherData.Temperature.Metric.Value);
+     setForcastDate(currentWeatherData.LocalObservationDateTime.substring(5, 10));
+     setForcastLastTimeUpdated(currentWeatherData.LocalObservationDateTime.substring(11, 16));
+     setHasPrecipitation(currentWeatherData.HasPrecipitation);
+     setWeatherType(currentWeatherData.WeatherText);
+     setWeatherIcon(currentWeatherData.WeatherIcon);
      const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
      const date = new Date();
@@ -89,18 +91,12 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
 
   const handleSubmit = (e) => {
     if (e) e.preventDefault(); 
-    axios.get
-     (`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=B23jFZIqsDsBHRoeGJH6G8GgvYahGRgV&q=${inputUpdated}`)
-     .then((res) => {
-      if (res.data.length === 0) {
-        alert('Please enter a valid city name');
-        return;
-      }
+    getCityKey(inputUpdated).then(cityKey => {
+      setCurrentCityKey(cityKey);
+      updateAllWeatherData(cityKey);
+      getFiveDaysForecast(cityKey);
+    });
 
-      updateAllWeatherData(res.data[0]);
-      getFiveDaysForecast(res.data[0]);
-
-    }).catch((err) => {});
   }
 
   return (
@@ -120,7 +116,8 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   </div>    
 
       <CreateWeatherForcast 
-        city={city} 
+        city={city}
+        currentCityKey={currentCityKey}
         country={country} 
         forcastDayOftheWeek={forcastDayOftheWeek}
         forcastDate={forcastDate}
