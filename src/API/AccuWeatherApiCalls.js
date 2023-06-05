@@ -4,7 +4,7 @@ import './../styles/styles.css';
 import axios from 'axios';
 
 
-const accuWeatherKey = "jyOZ9GWHIr4x9kJdZZti2cH2ShFBQA3r";
+const accuWeatherKey = "TsbZMvZqD3nAVDqEWvCGxRYToTqc5mhH";
 /* If it would be in production I would put it in .env file */ 
 
 const getForcastForEachOfTheNextFiveDays = async (data) => {
@@ -51,4 +51,19 @@ const getForcastForEachOfTheNextFiveDays = async (data) => {
       });
   }
 
-  export { getForcastForEachOfTheNextFiveDays, getAllCurrentWeatherData, getCityKey };
+  const getAutocompleteOptions = async (query) => {
+    return axios
+      .get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${accuWeatherKey}&q=${query}`)
+      .then((res) => {
+        console.log(res.data)
+        console.log("count");
+
+        return res.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  export { getForcastForEachOfTheNextFiveDays, getAllCurrentWeatherData,
+     getCityKey, getAutocompleteOptions };

@@ -7,8 +7,11 @@ import WeatherIcon from './components/WeatherIcon';
 import FiveDaysForecast from './components/FiveDaysForcast';
 import FavoriteCities from './components/FavoriteCitys';
 import CreateWeatherForcast from './components/CreateWeatherForcast';
+import Select from 'react-select';
 
-import { getForcastForEachOfTheNextFiveDays, getCityKey, getAllCurrentWeatherData } from './API/AccuWeatherApiCalls';
+
+import { getForcastForEachOfTheNextFiveDays, getCityKey,
+  getAutocompleteOptions, getAllCurrentWeatherData } from './API/AccuWeatherApiCalls';
 
 
 
@@ -30,6 +33,9 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   const [forcastLastTimeUpdated, setForcastLastTimeUpdated] = useState('');
   const [fiveDaysForcast, setFiveDaysForcast] = useState([]);
 
+  const [autoCompleteOptions, setAutoCompleteOptions] = useState([]);
+
+
   const [favorites, setFavorites] = useState(() => {
     const localData = localStorage.getItem('favorites');
     return localData ? JSON.parse(localData) : [];
@@ -45,14 +51,33 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
     return /^[A-Za-z ]*$/.test(text);
   }
 
-  const handleChangeInInput = (e) => {
-    if (isEnglish(e.target.value)) {
-      setInputUpdated(e.target.value);
+  const options = autoCompleteOptions.map(option => ({
+    value: option.LocalizedName,
+    label: option.LocalizedName
+  }));
+  
+  const handleAutoCompletion = async (value) => {
+    if(value.length > 2) { // Only fetch autocomplete options if more than 2 characters are entered
+      getAutocompleteOptions(value).then(data => {
+        setAutoCompleteOptions(data);
+       }) ;
+    } else {
+      setAutoCompleteOptions([]);
+    }
+  }
+  
+  
+
+  const handleChangeInInput = (value) => {
+    if (isEnglish(value)) {
+      setInputUpdated(value);
+      handleAutoCompletion(value);
     }
     else {
       alert("Please enter only english letters");
     }
   }
+
 
   const handleChangeToDefaultWeatherLocation = () => {
     setInputUpdated("tel aviv");
@@ -96,21 +121,45 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
 
   }
 
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      direction: 'ltr',
+      cursor: 'pointer', 
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      direction: 'rtl',  
+    }),
+  };
+
   return (
     hasWatchFavoritesPressed ? <FavoriteCities favorites={favorites}/> : 
     <div className="App">
       <h1 className='title'>Tomer's Weather App</h1>
       <div className='search_city_container'>
-    <form onSubmit={handleSubmit}>
-      <input 
-        className='city-search'
-        type='text' 
-        placeholder='Search for city' 
-        onChange={handleChangeInInput}
-      />
-    </form>
+        <form onSubmit={handleSubmit}>
+        <Select 
+          className='city-search'
+          styles={customStyles}
+          options={options}
+          placeholder='Search for city'
+          onInputChange={(value) => value && handleChangeInInput(value)}
+          onChange={(selectedOption) => selectedOption && setInputUpdated(selectedOption.value)}
+        />
 
-  </div>    
+
+
+        </form>
+
+        <button 
+          className='show-forcast-button'
+          type="button"
+          onClick={handleSubmit}>
+          Show 
+        </button>
+
+        </div>    
 
       <CreateWeatherForcast 
         city={city}
