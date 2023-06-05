@@ -10,28 +10,27 @@ const CreateWeatherForcast = (
     fiveDaysForcast}) =>  {
         
         const deleteFromFavorites = (city) => {
-            // Check if the city is in the favorites list
             if (favorites.some(favoriteCity => favoriteCity === city)) {
-                // Remove the city from the favorites list
                 const newFavorites = favorites.filter(favoriteCity => favoriteCity !== city);
                 
-                // Update the state and localStorage
                 setFavorites(newFavorites);
                 localStorage.setItem('favorites', JSON.stringify(newFavorites));
         
-                // Optional: Display a message or alert
                 setAddingToFavoriteMessage('Removed from favorites!');
                 alert('Removed from favorites!');
             }
             else{
-                // Optional: Display a message or alert if the city is not in the favorites list
                 setAddingToFavoriteMessage('City is not in favorites!');
                 alert('City is not in favorites!');
             }
         }
 
         const addToFavorites = (city) => {
-            if (!favorites.some(favoriteCity => favoriteCity === city)) {
+            if (favorites.length >= 5){
+                alert('You can only save 5 cities in memory!');
+                return;
+            }
+            else if (!favorites.some(favoriteCity => favoriteCity === city)) {
               const newFavorites = [...favorites, city];
               setFavorites(newFavorites);
               localStorage.setItem('favorites', JSON.stringify(newFavorites));
