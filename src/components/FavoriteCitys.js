@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Forcast from '../Forcast';
+import {getAllCurrentWeatherData } from './../API/AccuWeatherApiCalls';
+
 
 const FavoriteCities = ({favorites}) => {
+
     const [favoriteCities, setFavoriteCities] = useState([]);
     const [backToSearch, setBackToSearch] = useState(false);
-
-
-    console.log(favorites);
     const [inputUpdated, setInputUpdated] = useState('tel aviv');
+    const [cityWeatherData, setCityWeatherData] = useState({});
+
+    useEffect(() => {
+        const fetchCityWeatherData = async () => {
+            let cityData = {};
+            for (let city of favorites) {
+                const currentWeatherData = await getAllCurrentWeatherData(city.key);
+                cityData[city.name] = currentWeatherData;
+            }
+            setCityWeatherData(cityData);
+        }
+        
+        fetchCityWeatherData();
+    }, [favorites]);
 
 
     return (
@@ -22,9 +36,17 @@ const FavoriteCities = ({favorites}) => {
             {favorites.length > 0 ? favorites.map((city, index) => (
                 <button 
                     key={index}
-                    onClick={() => {setInputUpdated(city)} }
-                    > {city}
-                    
+                    onClick={() => {
+                        setInputUpdated(city.name);
+                        setBackToSearch(true);
+                        }
+                    }
+                > 
+                
+                {city.name}
+                {cityWeatherData[city.name] && cityWeatherData[city.name].WeatherText}
+                {cityWeatherData[city.name] && cityWeatherData[city.name].WeatherIcon}
+                {cityWeatherData[city.name] && cityWeatherData[city.name].Temperature.Metric.Value}
                 </button> 
                 
                 )

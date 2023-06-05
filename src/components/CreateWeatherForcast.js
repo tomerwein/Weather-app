@@ -2,49 +2,57 @@ import WeatherIcon from "./WeatherIcon"
 import FiveDaysForecast from "./FiveDaysForcast";
 
 const CreateWeatherForcast = (
-    {city, country, forcastDayOftheWeek, 
+    {city, currentCityKey, country, forcastDayOftheWeek, 
     forcastDate, forcastLastTimeUpdated,
     weatherIcon, iconSize, currentWeatherInC,
     weatherType, favorites, setFavorites,
     setAddingToFavoriteMessage, setHasWatchFavoritesPressed,
     fiveDaysForcast}) =>  {
         
-        const deleteFromFavorites = (city) => {
-            if (favorites.some(favoriteCity => favoriteCity === city)) {
-                const newFavorites = favorites.filter(favoriteCity => favoriteCity !== city);
+        const deleteFromFavorites = (cityName) => {
+            const favoriteCity = favorites.find(favoriteCity => favoriteCity.name === cityName);
+            
+            if (favoriteCity) {
+                const newFavorites = favorites.filter(favoriteCity => favoriteCity.name !== cityName);
                 
                 setFavorites(newFavorites);
                 localStorage.setItem('favorites', JSON.stringify(newFavorites));
-        
+            
                 setAddingToFavoriteMessage('Removed from favorites!');
                 alert('Removed from favorites!');
             }
-            else{
+            else {
                 setAddingToFavoriteMessage('City is not in favorites!');
                 alert('City is not in favorites!');
             }
         }
-
-        const addToFavorites = (city) => {
-            if (favorites.length >= 5){
+        
+        const addToFavorites = (cityName, currentCityKey) => {
+            if (favorites.length >= 5) {
                 alert('You can only save 5 cities in memory!');
                 return;
             }
-            else if (!favorites.some(favoriteCity => favoriteCity === city)) {
-              const newFavorites = [...favorites, city];
-              setFavorites(newFavorites);
-              localStorage.setItem('favorites', JSON.stringify(newFavorites));
-              setAddingToFavoriteMessage('Added to favorites!');
-              alert('Added to favorites!');
-              return;
-              
+            else if (!favorites.some(favoriteCity => favoriteCity.name === cityName)) {
+                const newFavoriteCity = {
+                    id: Date.now(), 
+                    name: cityName,
+                    key: currentCityKey,
+                };
+        
+                const newFavorites = [...favorites, newFavoriteCity];
+                setFavorites(newFavorites);
+                localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        
+                setAddingToFavoriteMessage('Added to favorites!');
+                alert('Added to favorites!');
+                return;
             }
-            else{
-              setAddingToFavoriteMessage('Already exist in memory!');
+            else {
+                setAddingToFavoriteMessage('Already exist in memory!');
                 alert('Already exist in memory!');
                 return;   
             }
-          }  
+        }  
 
         return (  
         <div className='main-container'>
@@ -77,7 +85,7 @@ const CreateWeatherForcast = (
           <div className='buttons-container'>
             <button 
               className='favorites-button'
-              onClick={() => addToFavorites(city)}>
+              onClick={() => addToFavorites(city, currentCityKey)}>
               Add to Favorites
             </button>
 

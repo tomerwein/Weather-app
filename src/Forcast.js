@@ -62,7 +62,6 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   const getFiveDaysForecast = async (data) => {
     getForcastForEachOfTheNextFiveDays(data)
     .then((res) => {
-      console.log(res);
       setFiveDaysForcast(res);
     })
   }
@@ -71,7 +70,6 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   const updateAllWeatherData = async (data) => {
     setCountry(data.Country.EnglishName);
     setCity(data.EnglishName);
-    console.log(data.EnglishName);
     getAllCurrentWeatherData(data)
     .then((currentWeatherData) => {
      setCurrentWeatherInC(currentWeatherData.Temperature.Metric.Value);
@@ -84,7 +82,6 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
 
      const date = new Date();
     const dayOfTheWeek = daysOfWeek[date.getDay()];
-    console.log(dayOfTheWeek);
      setForcastDayOftheWeek(dayOfTheWeek);
    })
   }

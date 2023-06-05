@@ -3,7 +3,6 @@ import WeatherIcon from './WeatherIcon';
 
 
 const SingleDay = ({ dayParameters, daysAdditionToCurrentDay }) => {
-    console.log(dayParameters);
     const date = dayParameters.Date.substring(5, 10);
     const minTemp = fahrenheitToCelsius(dayParameters.Temperature.Minimum.Value).toFixed(0);
     const maxTemp = fahrenheitToCelsius(dayParameters.Temperature.Maximum.Value).toFixed(0);

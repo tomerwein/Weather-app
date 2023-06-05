@@ -4,14 +4,14 @@ import './../styles/styles.css';
 import axios from 'axios';
 
 
-const accuWeatherKey = "4GsG9npuAQpROAK7aoSj5ZfDVc8CiEFY";
+const accuWeatherKey = "kI8hz23iWlbcvlaSET06f0ZkcAgl3z30";
 /* If it would be in production I would put it in .env file */ 
 
 const getForcastForEachOfTheNextFiveDays = async (data) => {
     return axios.get
     (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=${accuWeatherKey}`)
     .then((res) => {
-
+        console.log("count");
         return res.data.DailyForecasts;
         
     })
@@ -22,12 +22,11 @@ const getForcastForEachOfTheNextFiveDays = async (data) => {
 
 
   const getAllCurrentWeatherData = async (data) => {
+
     return axios.get
     (`http://dataservice.accuweather.com/currentconditions/v1/${data.Key}?apikey=${accuWeatherKey}`)
     .then((res) => {
-      console.log("check222");
-      console.log(res.data[0]);
-      console.log("check2222");
+      console.log("count");
       return res.data[0];
 
    })
@@ -43,6 +42,7 @@ const getForcastForEachOfTheNextFiveDays = async (data) => {
           alert('Please enter a valid city name');
           return;
         }
+        console.log("count");
         return res.data[0];
       })
       .catch((err) => {
