@@ -13,7 +13,6 @@
     padding-top: 18px;
 }
 
-
 .weather-output {
     padding: 5px;
     margin-top: 40px;
@@ -63,13 +62,11 @@
     margin: 25px auto 0 auto;
 }
 
-
 .weather_container h2,
 .weather_container h3,
 .weather_container {
     margin: 0px 0; 
 }
-
 
 .min_max_temp{
     font-size: calc(5px + 2vmin);
@@ -153,7 +150,7 @@
     background-color: #4CAF50; 
     border: none; 
     color: white; 
-    padding: 15px 15.5px; 
+    padding: 15px 10px; 
     text-align: center; 
     text-decoration: none;
     display: inline-block;
@@ -167,7 +164,6 @@
 .favorites-button:hover, .delete-favorites-button:hover {
     background-color: #286a2b;
 }
-
 
 .favorites-button:active, .delete-favorites-button:active {
     background-color: #18361a;
@@ -209,8 +205,6 @@
 }
 
 
-
-
 .cityName {
     font-size: 18px;
     font-weight: bold;
@@ -222,15 +216,13 @@
     font-size: 16px;
 }
 
-
 .city-search {
     width: 300px; 
     margin-right: 28px;
     cursor: pointer;
   }
 
-.show-forcast-button {
-    
+.show-forcast-button { 
     font-size: 16px;
     background-color: #4CAF50;
     color: white;

@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import WeatherIcon from './WeatherIcon';
 
 
@@ -28,8 +27,7 @@ const SingleDay = ({ dayParameters, daysAdditionToCurrentDay }) => {
           <span className='forcast_day_of_the_week'>
             {dayOfTheWeek}
           </span>
-            
-            
+                    
           <span className='five_days_icon'>
             <WeatherIcon weatherIcon={weatherIcon} iconSize={iconSize}/>
           </span>

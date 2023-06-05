@@ -7,7 +7,6 @@ const iconSize = "small-icon";
 
 
 const FavoriteCities = ({favorites}) => {
-
     const [backToSearch, setBackToSearch] = useState(false);
     const [inputUpdated, setInputUpdated] = useState('tel aviv');
     const [cityWeatherData, setCityWeatherData] = useState({});
@@ -30,7 +29,7 @@ const FavoriteCities = ({favorites}) => {
         backToSearch ? <Forcast
         inputUpdated={inputUpdated}
         setInputUpdated={setInputUpdated}
-        />: 
+        /> : 
         <div className='background'>
             <h2>Favorite Cities</h2>
 
@@ -43,25 +42,26 @@ const FavoriteCities = ({favorites}) => {
                 onClick={() => {
                     setInputUpdated(city.name);
                     setBackToSearch(true);
-                    }
                 }
-            > 
-                <div className="cityName">
-                    {city.name}
-                </div>
-                <div className="cityWeatherText">
-                    {cityWeatherData[city.name] && cityWeatherData[city.name].WeatherText}
-                </div>
-                <div className="cityWeatherIcon">
-                    {cityWeatherData[city.name] && <WeatherIcon 
-                    weatherIcon={cityWeatherData[city.name].WeatherIcon}
-                    iconSize={iconSize}
-                />}
+            }>
+             
+            <div className="cityName">
+                {city.name}
+            </div>
 
-                </div>
-                <div className="cityTemperature">
-                    {cityWeatherData[city.name] && cityWeatherData[city.name].Temperature.Metric.Value + '°C'}
-                </div>
+            <div className="cityWeatherText">
+                {cityWeatherData[city.name] && cityWeatherData[city.name].WeatherText}
+            </div>
+
+            <div className="cityWeatherIcon">
+                {cityWeatherData[city.name] && <WeatherIcon 
+                weatherIcon={cityWeatherData[city.name].WeatherIcon}
+                iconSize={iconSize}/>}
+            </div>
+        
+            <div className="cityTemperature">
+                {cityWeatherData[city.name] && cityWeatherData[city.name].Temperature.Metric.Value + '°C'}
+            </div>
             </button>
                
                 )     

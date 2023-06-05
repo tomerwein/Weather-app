@@ -1,40 +1,17 @@
 import React from 'react';
-import clearDay from './../images/clear-day.svg';
-import clearNight from './../images/clear-night.svg';
-import cloudyDay from './../images/cloudy-day-1.svg';
-import cloudyNight from './../images/cloudy-night-1.svg';
-import fullyCloudy from './../images/cloudy-original.svg';
-import thunderStorm from './../images/thunder-storm.svg'; 
-import rainyDay from './../images/rainy-1-day.svg';
-import rainyNight from './../images/rainy-1-night.svg';
-import snowy from './../images/snowy.svg';
-
-
-
-// import rainy from './../images/rainy-1-day.svg';
+import clearDay from './../images/icons/clear-day.svg';
+import clearNight from './../images/icons/clear-night.svg';
+import cloudyDay from './../images/icons/cloudy-day-1.svg';
+import cloudyNight from './../images/icons/cloudy-night-1.svg';
+import fullyCloudy from './../images/icons/cloudy-original.svg';
+import thunderStorm from './../images/icons/thunder-storm.svg'; 
+import rainyDay from './../images/icons/rainy-1-day.svg';
+import rainyNight from './../images/icons/rainy-1-night.svg';
+import snowy from './../images/icons/snowy.svg';
 
 const WeatherIcon = ({ weatherIcon, iconSize }) => {
-    // const clearDaySvg = `<?xml version="1.0"?>
-    // <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
-    //  <style>
-    //   <![CDATA[#esic8yxwm7h2_to {animation: esic8yxwm7h2_to__to 6000ms linear infinite normal forwards}@keyframes esic8yxwm7h2_to__to { 0% {transform: translate(0px,0px)} 50% {transform: translate(40.000000px,40.000000px)} 100% {transform: translate(0px,0px)} }#esic8yxwm7h2_ts {animation: esic8yxwm7h2_ts__ts 6000ms linear infinite normal forwards}@keyframes esic8yxwm7h2_ts__ts { 0% {transform: scale(1,1)} 50% {transform: scale(0.900000,0.900000)} 100% {transform: scale(1,1)} }]]>
-    //  </style>
-    //  <g class="layer">
-    //   <title>Layer 1</title>
-    //   <g id="esic8yxwm7h2_to" transform="translate(0,0)">
-    //    <g id="esic8yxwm7h2_ts" transform="scale(1,1)">
-    //     <circle fill="orange" id="esic8yxwm7h2" r="224" transform="translate(400,400)"/>
-    //    </g>
-    //   </g>
-    //  </g>
-    // </svg>`;
-
     if (weatherIcon === 1 || weatherIcon === 2 || weatherIcon === 3) {
         return <img className={iconSize} src={clearDay} alt="clear-day"/>;
-
-    //     return <div className={`svg-wrapper ${iconSize}`} dangerouslySetInnerHTML={{ __html: clearDaySvg }} />
-
-
     } else if (weatherIcon === 4 || weatherIcon === 5 || weatherIcon === 6) {
         return <img className={iconSize} src={cloudyDay} alt="cloudy-day"/>;
     } else if (weatherIcon === 7 || weatherIcon === 8 || weatherIcon === 11) {
