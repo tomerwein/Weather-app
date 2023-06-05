@@ -1,15 +1,12 @@
-
-
 import './../styles/styles.css';
 import axios from 'axios';
 
-
-const accuWeatherKey = "nlPjkePaXHpdohnZNAFf9dFc1nyGgiI9";
+const accuWeatherKey = "WcmDFQtdUtJ5oLHC0I3CWCFLuS0r1omh";
 /* If it would be in production I would put it in .env file */ 
 
 const getForcastForEachOfTheNextFiveDays = async (data) => {
     return axios.get
-    (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=${accuWeatherKey}`)
+    (`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${data.Key}?apikey=${accuWeatherKey}`)
     .then((res) => {
         return res.data.DailyForecasts;
         
@@ -21,11 +18,10 @@ const getForcastForEachOfTheNextFiveDays = async (data) => {
     })
   }
 
-
   const getAllCurrentWeatherData = async (data) => {
 
     return axios.get
-    (`http://dataservice.accuweather.com/currentconditions/v1/${data.Key}?apikey=${accuWeatherKey}`)
+    (`https://dataservice.accuweather.com/currentconditions/v1/${data.Key}?apikey=${accuWeatherKey}`)
     .then((res) => {
       return res.data[0];
 
@@ -38,7 +34,7 @@ const getForcastForEachOfTheNextFiveDays = async (data) => {
   }
 
   const getCityKey = async (inputUpdated) => { 
-    return axios.get(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${accuWeatherKey}&q=${inputUpdated}`)
+    return axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${accuWeatherKey}&q=${inputUpdated}`)
       .then((res) => {
         if (res.data.length === 0) {
           alert('Please enter a valid city name');
@@ -55,7 +51,7 @@ const getForcastForEachOfTheNextFiveDays = async (data) => {
 
   const getAutocompleteOptions = async (query) => {
     return axios
-      .get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${accuWeatherKey}&q=${query}`)
+      .get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${accuWeatherKey}&q=${query}`)
       .then((res) => {
         return res.data;
       })
