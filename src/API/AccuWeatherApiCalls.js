@@ -4,7 +4,7 @@ import './../styles/styles.css';
 import axios from 'axios';
 
 
-const accuWeatherKey = "wwpkvP07c7GmvpWi4LTWCHQOyScQKzW7";
+const accuWeatherKey = "nlPjkePaXHpdohnZNAFf9dFc1nyGgiI9";
 /* If it would be in production I would put it in .env file */ 
 
 const getForcastForEachOfTheNextFiveDays = async (data) => {

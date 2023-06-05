@@ -178,7 +178,6 @@
     gap: 20px; 
 }
 
-
 .buttons-container {
     position: relative;
     display: flex;
@@ -201,7 +200,7 @@
 }
 
 .cityButton:hover {
-    background-color: #45a049;
+    background-color: #4CAF50; 
 }
 
 
