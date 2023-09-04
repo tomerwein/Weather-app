@@ -131,7 +131,7 @@
 
 .favorites-button {
     position: relative;
-    background-color: #4CAF50; 
+    background-color: rgb(95, 63, 168);; 
     border: none; 
     color: white; 
     padding: 15px 32px; 
@@ -147,7 +147,7 @@
 
 .delete-favorites-button {
     position: relative;
-    background-color: #4CAF50; 
+    background-color: rgb(95, 63, 168);; 
     border: none; 
     color: white; 
     padding: 15px 10px; 
@@ -162,7 +162,7 @@
 }
 
 .favorites-button:hover, .delete-favorites-button:hover {
-    background-color: #286a2b;
+    background-color: #402080;
 }
 
 .favorites-button:active, .delete-favorites-button:active {
@@ -223,7 +223,7 @@
 
 .show-forcast-button { 
     font-size: 16px;
-    background-color: #4CAF50;
+    background-color:rgb(95, 63, 168);
     color: white;
     border: none;
     border-radius: 5px;
@@ -233,7 +233,7 @@
 }
 
 .show-forcast-button:hover {
-    background-color: #286a2b;
+    background-color: #402080;
 }
 
 .show-forcast-button:active {
