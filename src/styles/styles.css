@@ -1,16 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Neucha&family=Roboto&family=Rubik&family=Solitreo&display=swap');
+
 .background {
     text-align: center;
     background-image: url('./../images/background/bright_day.jpg');
     background-size: cover;
-    background-position: center;
-    
-    min-height: 93.8vh;
+    background-position: center;  
+    min-height: 95.6vh;
     padding-top: 40px;
     position: relative;
 }
 
 .title {
-    padding-top: 18px;
+    font-size: calc(20px + 2vmin);
+    font-weight: bold; 
+    font-family: 'Roboto', sans-serif;
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.favorites_title {
+    padding-top: 120px;
 }
 
 .weather-output {
@@ -28,24 +38,27 @@
 }
 
 .big-icon {
-    width: 150px; 
-    height: 150px; 
+    width: 200px; 
+    height: 200px; 
 }
 
 .weather_container {
-    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 250px;
+    width: 280px;
     font-size: calc(5px + 2vmin);
-    border: 5px solid black; 
+    border: 3px solid rgb(105, 104, 104);  
     border-radius: 10px;
-    color: rgb(11, 30, 230);
-    background-color: rgba(173, 216, 230, 0.6);  
-
+    
+    background-color: lightgray;   
     margin: 25px 0 0 0;
+    cursor: pointer;
+}
+
+.weather_container:hover{
+    background-color: rgb(156, 156, 156);
 }
 
 .single_day_forcast_container{
@@ -53,13 +66,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100px;
+    width: 130px;
+    color: black;
     font-size: calc(5px + 2vmin);
-    border: 5px solid black; 
+    border: 3px solid rgb(105, 104, 104); 
     border-radius: 10px;
-    color: rgb(11, 30, 230);
-    background-color: rgba(173, 216, 230, 0.6);
+    font-family: 'Roboto', sans-serif;
+    CURSOR: pointer; 
+    background-color: lightgray;  
     margin: 25px auto 0 auto;
+}
+
+.single_day_forcast_container:hover {
+    background-color: rgb(156, 156, 156); 
 }
 
 .weather_container h2,
@@ -68,12 +87,63 @@
     margin: 0px 0; 
 }
 
-.min_max_temp{
-    font-size: calc(5px + 2vmin);
-    color: rgb(11, 30, 230);
-    line-height: 1.2; 
-    font-family: Arial, sans-serif;
+.city-country {
+    font-size: calc(13px + 2vmin);
     font-weight: bold; 
+    font-family: 'Roboto', sans-serif;
+}
+
+.date-day-of-the-week{
+    font-size: calc(8px + 2vmin);
+    font-family: 'Roboto', sans-serif;
+}
+
+.time{
+    font-size: calc(8px + 2vmin);
+    font-family: 'Roboto', sans-serif;
+}
+
+.five_days_icon{
+    font-size: calc(8px + 2vmin);
+    font-family: 'Roboto', sans-serif;
+}
+
+.temperature{
+    font-size: calc(10px + 2vmin);
+    font-family: 'Roboto', sans-serif;
+}
+
+.weather-type{
+    font-size: calc(8px + 2vmin);
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+.cityButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+    CURSOR: pointer;    
+    border-radius: 5px;
+    background-color: lightgray;
+}
+
+.cityButton:hover {
+    background-color: rgb(156, 156, 156);
+; 
+}
+
+
+.min_max_temp{
+    font-size: calc(7px + 2vmin);
+    color: black;
+    line-height: 1.2; 
+    font-family: 'Roboto', sans-serif;
+    
 }
 
 .five_days_icon{
@@ -82,10 +152,9 @@
 
 .forcast_date{
     font-size: calc(5px + 2vmin);
-    color: rgb(11, 30, 230);
     line-height: 1.2; 
-    font-family: Arial, sans-serif;
     font-weight: bold; 
+    font-family: 'Roboto', sans-serif;
 }
 
 .five_days_forcast_container {
@@ -131,10 +200,10 @@
 
 .favorites-button {
     position: relative;
-    background-color: rgb(95, 63, 168);; 
+    background-color: #319cc6a7;
     border: none; 
     color: white; 
-    padding: 15px 32px; 
+    padding: 17px 32px; 
     text-align: center; 
     text-decoration: none;
     display: inline-block;
@@ -143,26 +212,28 @@
     cursor: pointer; 
     border-radius: 12px; 
     transition-duration: 0.6s; 
+    margin-left: 20px;
 }
 
 .delete-favorites-button {
     position: relative;
-    background-color: rgb(95, 63, 168);; 
+    background-color: #319cc6a7;
     border: none; 
     color: white; 
-    padding: 15px 10px; 
+    padding: 17px 10px; 
     text-align: center; 
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    margin: 10px 0px;
+    margin: 20px 0px;
     cursor: pointer; 
     border-radius: 12px; 
     transition-duration: 0.6s; 
+    margin-left: 20px;
 }
 
 .favorites-button:hover, .delete-favorites-button:hover {
-    background-color: #402080;
+    background-color: #006187a7;
 }
 
 .favorites-button:active, .delete-favorites-button:active {
@@ -187,22 +258,6 @@
     justify-content: center;
 }
 
-.cityButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    padding: 10px;
-    CURSOR: pointer;    
-    border-radius: 5px;
-    background-color: lightgray;
-}
-
-.cityButton:hover {
-    background-color: #4CAF50; 
-}
-
 
 .cityName {
     font-size: 18px;
@@ -221,19 +276,19 @@
     cursor: pointer;
   }
 
-.show-forcast-button { 
-    font-size: 16px;
-    background-color:rgb(95, 63, 168);
+.show-forcast-button {
+    font-size: 14px;
+    background-color:#319cc6a7;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 14px 10px; 
+    border-radius: 12px;
     transition: 0.3s;
-    
     cursor: pointer;
+    margin-left: 15px;
 }
-
 .show-forcast-button:hover {
-    background-color: #402080;
+    background-color: #006187a7;
 }
 
 .show-forcast-button:active {

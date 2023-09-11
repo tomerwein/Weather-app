@@ -31,7 +31,7 @@ const FavoriteCities = ({favorites}) => {
         setInputUpdated={setInputUpdated}
         /> : 
         <div className='background'>
-            <h2>Favorite Cities</h2>
+            <h1 className='favorites_title'>Favorite Cities</h1>
 
             <div className="favorite-cities">
 

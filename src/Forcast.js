@@ -127,7 +127,9 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
   return (
     hasWatchFavoritesPressed ? <FavoriteCities favorites={favorites}/> : 
     <div className="App">
-      <h1 className='title'>Tomer's Weather App</h1>
+      <div className='title'>
+        <span>Tomer's Weather App</span>
+      </div>
       <div className='search_city_container'>
         <form onSubmit={handleSubmit}>
           <Select 
@@ -138,6 +140,7 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
             onInputChange={(value) => value && handleChangeInInput(value)}
             onChange={(selectedOption) => selectedOption && setInputUpdated(selectedOption.value)}
           />
+
         </form>
 
         <button 
@@ -146,6 +149,7 @@ const Forcast = ({inputUpdated, setInputUpdated}) =>  {
           onClick={handleSubmit}>
           Show 
         </button>
+        
 
         </div>    
 

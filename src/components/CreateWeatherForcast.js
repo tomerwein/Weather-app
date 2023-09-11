@@ -52,27 +52,30 @@ const CreateWeatherForcast = (
       <div className='main-container'>
         {city && (<div className='full-container'>
           <div className='weather_container'>  
-            <h3 className="city-country">
+            <span className="city-country">
               {city + ','} {country}
-            </h3>
+            </span>
 
-            <h3 className="date-day-of-the-week">
-                {forcastDayOftheWeek + ', ' + forcastDate}  
-            </h3>
-
-            <h3 className="time">
-              {forcastLastTimeUpdated}
-            </h3>
-
-            <WeatherIcon weatherIcon={weatherIcon} iconSize={iconSize}/>
-           
-            <h2 className='temperature'>
-              {currentWeatherInC + '°C'}
-            </h2>
           
-            <h3 className='weather-type'>
+            <span className="date-day-of-the-week">
+                {forcastDayOftheWeek + ', ' + forcastDate}  
+            </span>
+
+            <span className="time">
+              {forcastLastTimeUpdated}
+            </span>
+            
+            <span className='five_days_icon'>
+            <WeatherIcon weatherIcon={weatherIcon} iconSize={iconSize}/>
+            </span>
+            
+            <span className='temperature'>
+              {currentWeatherInC + '°C'}
+            </span>
+          
+            <span className='weather-type'>
               {'Status: ' + weatherType}
-            </h3>
+            </span>
       
         </div>
 
